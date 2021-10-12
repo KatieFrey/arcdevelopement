@@ -30,6 +30,7 @@ export default function Header(props){
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -40,10 +41,18 @@ export default function Header(props){
     setOpen(true);
   };
 
+  const handleMenuItemClick = (event, index) => {
+    setAnchorEl(null);
+    setOpen(false);
+    setSelectedIndex(index);
+  }
+
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
   }
+
+  const menuOptions = [{name: "Services", link: "/services"}, {name: "Custom Software Development", link: "/customsoftware"}, {name: "Mobile App Development", link: "/mobileapps"}, {name: "Website Development", link: "/websites"}]
 
   useEffect(() => {
     if(window.location.pathname === "/" && value !== 0){
@@ -91,10 +100,17 @@ export default function Header(props){
               disableAutoFocusItem
               elevation={0}
               MenuListProps={{onMouseLeave: handleClose}}>
-              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/services">Services</MenuItemContainer>
-              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/customsoftware">Custom Software Development</MenuItemContainer>
-              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/mobileapps">Mobile App Development</MenuItemContainer>
-              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/websites">Website Development</MenuItemContainer>
+              {menuOptions.map((option, index) => (
+                <MenuItemContainer
+                  key={option}
+                  component={Link}
+                  to={option.link}
+                  onClick={(event) => {handleMenuItemClick(event, index); setValue(1); handleClose(); }}
+                  selected={index === selectedIndex && value === 1}
+                  >
+                  {option.name}
+                </MenuItemContainer>
+              ))}
             </MenuContainer>
           </Toolbar>
         </AppBar>
