@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
-import {Tabs, Tab, Button} from '@mui/material'
+import {Tabs, Tab, Button, Menu, MenuItem} from '@mui/material'
+//import theme from "../components/ui/Theme";
 
 export const TabsContainer = styled(Tabs)`
   margin-left: auto;
@@ -27,4 +28,24 @@ export const ButtonContainer = styled(Button)`
 
 export const LogoButton = styled(Button)`
   padding: 0;
+`;
+
+export const MenuContainer = styled(Menu)`
+  padding: 0;
+  margin: 0;
+`
+export const MenuItemContainer = styled(MenuItem)`
+  background-color: #0B72B9;
+  color: white;
+  font-family: Raleway;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 1rem;
+  &:first-child {
+    margin-top: -10px;
+    font-size: 1.25rem;
+  }
+  &:hover {
+    color: #FFBA60;
+  }
 `

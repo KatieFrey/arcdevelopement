@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Toolbar, AppBar} from '@mui/material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { CompanyLogo } from '../../utils/emotion-styled-components';
-import {TabsContainer, TabContainer, ButtonContainer, LogoButton} from '../../utils/mui-styled-components';
+import {TabsContainer, TabContainer, ButtonContainer, LogoButton, MenuContainer, MenuItemContainer} from '../../utils/mui-styled-components';
 import { Link } from 'react-router-dom';
 
 
@@ -28,8 +28,21 @@ function ElevationScroll(props) {
 
 export default function Header(props){
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
   }
 
   useEffect(() => {
@@ -57,12 +70,32 @@ export default function Header(props){
             </LogoButton>
             <TabsContainer value={value} textColor="inherit" onChange={handleChange} indicatorColor="secondary">
               <TabContainer label="Home" component={Link} to={"/"} />
-              <TabContainer label="Services" component={Link} to={"/services"} />
+              <TabContainer
+                aria-owns={anchorEl ? "simple-menu" : undefined}
+                aria-haspopup={anchorEl ? "true" : undefined}
+                onMouseOver={(event) => handleClick(event)}
+                label="Services"
+                component={Link}
+                to={"/services"}
+                />
               <TabContainer label="The Revolution" component={Link} to={"/revolution"} />
               <TabContainer label="About Us" component={Link} to={"/about"} />
               <TabContainer label="Contact Us" component={Link} to={"/contact"} />
             </TabsContainer>
             <ButtonContainer variant="contained" color="secondary">Free Estimate</ButtonContainer>
+            <MenuContainer
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              disableAutoFocusItem
+              elevation={0}
+              MenuListProps={{onMouseLeave: handleClose}}>
+              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/services">Services</MenuItemContainer>
+              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/customsoftware">Custom Software Development</MenuItemContainer>
+              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/mobileapps">Mobile App Development</MenuItemContainer>
+              <MenuItemContainer onClick={() => {handleClose(); setValue(1);}} component={Link} to="/websites">Website Development</MenuItemContainer>
+            </MenuContainer>
           </Toolbar>
         </AppBar>
       </ElevationScroll>

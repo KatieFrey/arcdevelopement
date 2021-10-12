@@ -29,5 +29,22 @@ export default createTheme({
       textTransform: "none",
       color: "white"
     }
-  }
+  },
+  components: {
+    MuiMenuItem: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: `${arcBlue}`,
+          elevation: 0,
+        },
+      },
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          elevation: 0
+        },
+      },
+    },
+  },
 })
