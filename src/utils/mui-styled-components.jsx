@@ -1,6 +1,11 @@
 import { styled } from '@mui/material/styles';
-import {Tabs, Tab, Button, Menu, MenuItem, SwipeableDrawer, IconButton} from '@mui/material';
+import {Tabs, Tab, Button, Menu, MenuItem, SwipeableDrawer, IconButton, List, ListItem, ListItemText, AppBar} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+
+export const AppBarContainer = styled(AppBar)(({theme}) => ({
+  zIndex: theme.zIndex.modal + 1
+}))
+
 
 export const MarginDiv = styled('div')(({ theme }) => ({
   minHeight: "56px",
@@ -14,9 +19,11 @@ export const MarginDiv = styled('div')(({ theme }) => ({
   },
 }));
 
-export const DrawerContainer = styled(SwipeableDrawer)`
-
-`;
+export const DrawerContainer = styled(SwipeableDrawer)(({ theme }) => ({
+  '& .MuiDrawer-paper': {
+    backgroundColor: `${theme.palette.common.blue}`,
+  }
+}));
 
 export const IconContainer = styled(IconButton)`
   margin-left: auto;
@@ -86,4 +93,34 @@ export const MenuItemContainer = styled(MenuItem)`
   &:hover {
     color: #FFBA60;
   }
+`
+export const ListContainer = styled(List)`
+
+`;
+
+export const ListItemContainer = styled(ListItem)(({theme}) => ({
+  '&:last-child': {
+    backgroundColor: "#FFBA60",
+  },
+  '& .Mui-selected': {
+    boxShadow: `0px 0px 0px 8px ${theme.palette.common.orange}`
+  }
+}));
+
+export const ListItemTextContainer = styled(ListItemText)`
+  font-family: Raleway;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  opacity: 0.7;
+`;
+
+export const ListItemTextSelected = styled(ListItemText)`
+  font-family: Raleway;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  opacity: 1;
 `

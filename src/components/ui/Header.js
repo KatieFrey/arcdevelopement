@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { Toolbar, AppBar} from '@mui/material';
+import { Toolbar } from '@mui/material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { CompanyLogo } from '../../utils/emotion-styled-components';
-import {TabsContainer, TabContainer, ButtonContainer, LogoButton, MenuContainer, MenuItemContainer, MarginDiv, DrawerContainer, IconContainer, MenuIconContainer} from '../../utils/mui-styled-components';
+import {TabsContainer, TabContainer, ButtonContainer, LogoButton, MenuContainer, MenuItemContainer, MarginDiv, DrawerContainer, IconContainer, MenuIconContainer, ListContainer, ListItemContainer, ListItemTextContainer, ListItemTextSelected, AppBarContainer} from '../../utils/mui-styled-components';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -40,7 +40,8 @@ export default function Header(props){
   const [openMenu, setOpenMenu] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  console.log("Matches: ", matches)
+  console.log("Value: ", value)
+  //console.log("Matches: ", matches)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -62,93 +63,35 @@ export default function Header(props){
     setOpenMenu(false);
   }
 
-  const menuOptions = [{name: "Services", link: "/services"}, {name: "Custom Software Development", link: "/customsoftware"}, {name: "Mobile App Development", link: "/mobileapps"}, {name: "Website Development", link: "/websites"}]
+  const menuOptions = [{name: "Services", link: "/services", activeIndex: 1, selectedIndex: 0}, {name: "Custom Software Development", link: "/customsoftware", activeIndex: 1, selectedIndex: 1}, {name: "Mobile App Development", link: "/mobileapps", activeIndex: 1, selectedIndex: 2}, {name: "Website Development", link: "/websites", activeIndex: 1, selectedIndex: 3}]
+
+  const routes = [{name: "Home", link: "/", activeIndex: 0}, {name: "Services", link: "/services", activeIndex: 1, ariaOwns: anchorEl ? "simple-menu" : undefined, ariaPopup: anchorEl ? "true" : undefined, mouseOver: (event) => handleClick(event)}, {name: "The Revolution", link: "/revolution", activeIndex: 2}, {name: "About Us", link: "/about", activeIndex: 3}, {name: "Contact Us", link: "/contact", activeIndex: 4}]
 
   useEffect(() => {
-    if(window.location.pathname === "/" && value !== 0){
-      setValue(0);
-    } else if (window.location.pathname === "/services" && value !== 1){
-      setValue(1);
-    } else if (window.location.pathname === "/revolution" && value !== 2){
-      setValue(2);
-    } else if (window.location.pathname === "/about" && value !== 3){
-      setValue(3);
-    } else if(window.location.pathname === "/contact" && value !== 4){
-      setValue(4)
-    }
-
-    switch(window.location.pathname){
-      case "/":
-        if(value !== 0){
-          setValue(0)
-        }
-        break;
-      case "/services":
-        if(value !== 1){
-          setValue(1);
-          setSelectedIndex(0);
-        }
-        break;
-      case "/customsoftware":
-        if(value !== 1){
-          setValue(1);
-          setSelectedIndex(1);
-        }
-        break;
-      case "/mobileapps":
-        if(value !== 1){
-          setValue(1);
-          setSelectedIndex(2);
-        }
-        break;
-      case "/websites":
-        if(value !== 1){
-          setValue(1);
-          setSelectedIndex(3);
-        }
-        break;
-      case "/revolution":
-        if(value !== 2){
-            setValue(2);
-        }
-        break;
-      case "/about":
-        if(value !== 3){
-            setValue(3);
-        }
-        break;
-      case "/contact":
-        if(value !== 4){
-            setValue(4);
-        }
-        break;
-        case "/estimate":
-        if(value !== 5){
-            setValue(5);
-        }
-        break;
-      default:
-        break;
-    }
-  }, [value])
+    [...menuOptions, ...routes].forEach(route => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if(value !== route.activeIndex) {
+            setValue(route.activeIndex);
+            if(route.selectedIndex && route.selectedIndex !== selectedIndex) {
+              setSelectedIndex(route.selectedIndex);
+            }
+          }
+          break;
+          default:
+          break;
+      }
+    })
+  }, [value, menuOptions, selectedIndex, routes])
 
   const tabs = () => (
     <React.Fragment>
       <TabsContainer value={value} textColor="inherit" onChange={handleChange} indicatorColor="secondary">
-        <TabContainer label="Home" component={Link} to={"/"} />
-        <TabContainer
-          aria-owns={anchorEl ? "simple-menu" : undefined}
-          aria-haspopup={anchorEl ? "true" : undefined}
-          onMouseOver={(event) => handleClick(event)}
-          label="Services"
-          component={Link}
-          to={"/services"}
-          />
-        <TabContainer label="The Revolution" component={Link} to={"/revolution"} />
-        <TabContainer label="About Us" component={Link} to={"/about"} />
-        <TabContainer label="Contact Us" component={Link} to={"/contact"} />
+        {routes.map((route,index) => (
+          <TabContainer key={`${route}${index}`} component={Link} to={route.link} label={route.name} aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}/>
+        ))}
       </TabsContainer>
-      <ButtonContainer variant="contained" color="secondary">Free Estimate</ButtonContainer>
+      <ButtonContainer variant="contained" color="secondary" component={Link} to={"/estimate"}>Free Estimate</ButtonContainer>
       <MenuContainer
         id="simple-menu"
         anchorEl={anchorEl}
@@ -156,10 +99,14 @@ export default function Header(props){
         onClose={handleClose}
         disableAutoFocusItem
         elevation={0}
-        MenuListProps={{onMouseLeave: handleClose}}>
+        keepMounted
+        MenuListProps={{onMouseLeave: handleClose}}
+        style={{zIndex: 1302}}
+        >
+
         {menuOptions.map((option, index) => (
           <MenuItemContainer
-            key={option}
+            key={`${option}${index}`}
             component={Link}
             to={option.link}
             onClick={(event) => {handleMenuItemClick(event, index); setValue(1); handleClose(); }}
@@ -175,7 +122,29 @@ export default function Header(props){
   const drawer = (
     <React.Fragment>
       <DrawerContainer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)}>
-        Example Drawer
+        <MarginDiv />
+        <ListContainer disablePadding>
+          {routes.map(route => (
+            <ListItemContainer key={`${route}${route.activeIndex}`} divider button component={Link} to={route.link} selected={value === route.activeIndex} onClick={() => {setOpenDrawer(false); setValue(route.activeIndex);}}>
+              {value !== route.activeIndex ?
+                <ListItemTextContainer disableTypography>{route.name}</ListItemTextContainer> :
+                <ListItemTextSelected disableTypography>{route.name}</ListItemTextSelected>
+                }
+            </ListItemContainer>
+          ))}
+          <ListItemContainer
+            onClick={() => {setOpenDrawer(false); setValue(5);}}
+            divider
+            button
+            component={Link}
+            to="/estimate"
+            selected={value === 5}>
+            {value !== 5 ?
+                <ListItemTextContainer disableTypography>Free Estimate</ListItemTextContainer> :
+                <ListItemTextSelected disableTypography>Free Estimate</ListItemTextSelected>
+                }
+          </ListItemContainer>
+        </ListContainer>
       </DrawerContainer>
       <IconContainer onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
         <MenuIconContainer></MenuIconContainer>
@@ -186,14 +155,14 @@ export default function Header(props){
   return (
     <React.Fragment>
       <ElevationScroll {...props}>
-        <AppBar position="fixed">
+        <AppBarContainer position="fixed">
           <Toolbar disableGutters>
             <LogoButton disableRipple component={Link} to={"/"}>
               <CompanyLogo alt="company logo" src={logo} onClick={() => setValue(0)}/>
             </LogoButton>
             {matches ? drawer : tabs()}
           </Toolbar>
-        </AppBar>
+        </AppBarContainer>
       </ElevationScroll>
       <MarginDiv />
     </React.Fragment>

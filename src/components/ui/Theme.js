@@ -39,12 +39,5 @@ export default createTheme({
         },
       },
     },
-    MuiMenu: {
-      styleOverrides: {
-        paper: {
-          elevation: 0
-        },
-      },
-    },
   },
 })
