@@ -1,6 +1,34 @@
 import { styled } from '@mui/material/styles';
-import {Tabs, Tab, Button, Menu, MenuItem} from '@mui/material'
-//import theme from "../components/ui/Theme";
+import {Tabs, Tab, Button, Menu, MenuItem, SwipeableDrawer, IconButton} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+
+export const MarginDiv = styled('div')(({ theme }) => ({
+  minHeight: "56px",
+  marginBottom: "4em",
+
+  [theme.breakpoints.down('md')]: {
+    marginBottom: "3em",
+  },
+  [theme.breakpoints.down('xs')]: {
+    marginBottom: "2em",
+  },
+}));
+
+export const DrawerContainer = styled(SwipeableDrawer)`
+
+`;
+
+export const IconContainer = styled(IconButton)`
+  margin-left: auto;
+  &:hover {
+    background-color: transparent;
+  }
+`;
+
+export const MenuIconContainer = styled(MenuIcon)`
+  height: 50px;
+  width: 50px;
+`;
 
 export const TabsContainer = styled(Tabs)`
   margin-left: auto;
@@ -26,9 +54,19 @@ export const ButtonContainer = styled(Button)`
   color: white;
 `;
 
-export const LogoButton = styled(Button)`
-  padding: 0;
-`;
+export const LogoButton = styled(Button)(({ theme }) => ({
+  padding: 0,
+  [theme.breakpoints.down('md')]: {
+    height: "8em",
+  },
+  [theme.breakpoints.down('xs')]: {
+    height: "5.5em",
+  },
+}));
+
+// export const LogoButton = styled(Button)`
+//   padding: 0;
+// `;
 
 export const MenuContainer = styled(Menu)`
   padding: 0;
