@@ -35,16 +35,16 @@ export default function Header(props){
   const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [value, setValue] = useState(0);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0)
 
-  console.log("Value: ", value)
+
+  console.log("Value: ", props.value)
   //console.log("Matches: ", matches)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    props.setValue(newValue);
   };
 
   const handleClick = (event) => {
@@ -55,7 +55,7 @@ export default function Header(props){
   const handleMenuItemClick = (event, index) => {
     setAnchorEl(null);
     setOpenMenu(false);
-    setSelectedIndex(index);
+    props.setSelectedIndex(index);
   }
 
   const handleClose = () => {
@@ -71,10 +71,10 @@ export default function Header(props){
     [...menuOptions, ...routes].forEach(route => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if(value !== route.activeIndex) {
-            setValue(route.activeIndex);
-            if(route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex);
+          if(props.value !== route.activeIndex) {
+            props.setValue(route.activeIndex);
+            if(route.selectedIndex && route.selectedIndex !== props.selectedIndex) {
+              props.setSelectedIndex(route.selectedIndex);
             }
           }
           break;
@@ -82,11 +82,11 @@ export default function Header(props){
           break;
       }
     })
-  }, [value, menuOptions, selectedIndex, routes])
+  }, [props.value, menuOptions, props.selectedIndex, routes])
 
   const tabs = () => (
     <React.Fragment>
-      <TabsContainer value={value} textColor="inherit" onChange={handleChange} indicatorColor="secondary">
+      <TabsContainer value={props.value} textColor="inherit" onChange={handleChange} indicatorColor="secondary">
         {routes.map((route,index) => (
           <TabContainer key={`${route}${index}`} component={Link} to={route.link} label={route.name} aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}/>
         ))}
@@ -109,8 +109,8 @@ export default function Header(props){
             key={`${option}${index}`}
             component={Link}
             to={option.link}
-            onClick={(event) => {handleMenuItemClick(event, index); setValue(1); handleClose(); }}
-            selected={index === selectedIndex && value === 1}
+            onClick={(event) => {handleMenuItemClick(event, index); props.setValue(1); handleClose(); }}
+            selected={index === props.selectedIndex && props.value === 1}
             >
             {option.name}
           </MenuItemContainer>
@@ -125,21 +125,21 @@ export default function Header(props){
         <MarginDiv />
         <ListContainer disablePadding>
           {routes.map(route => (
-            <ListItemContainer key={`${route}${route.activeIndex}`} divider button component={Link} to={route.link} selected={value === route.activeIndex} onClick={() => {setOpenDrawer(false); setValue(route.activeIndex);}}>
-              {value !== route.activeIndex ?
+            <ListItemContainer key={`${route}${route.activeIndex}`} divider button component={Link} to={route.link} selected={props.value === route.activeIndex} onClick={() => {setOpenDrawer(false); props.setValue(route.activeIndex);}}>
+              {props.value !== route.activeIndex ?
                 <ListItemTextContainer disableTypography>{route.name}</ListItemTextContainer> :
                 <ListItemTextSelected disableTypography>{route.name}</ListItemTextSelected>
                 }
             </ListItemContainer>
           ))}
           <ListItemContainer
-            onClick={() => {setOpenDrawer(false); setValue(5);}}
+            onClick={() => {setOpenDrawer(false); props.setValue(5);}}
             divider
             button
             component={Link}
             to="/estimate"
-            selected={value === 5}>
-            {value !== 5 ?
+            selected={props.value === 5}>
+            {props.value !== 5 ?
                 <ListItemTextContainer disableTypography>Free Estimate</ListItemTextContainer> :
                 <ListItemTextSelected disableTypography>Free Estimate</ListItemTextSelected>
                 }
@@ -158,7 +158,7 @@ export default function Header(props){
         <AppBarContainer position="fixed">
           <Toolbar disableGutters>
             <LogoButton disableRipple component={Link} to={"/"}>
-              <CompanyLogo alt="company logo" src={logo} onClick={() => setValue(0)}/>
+              <CompanyLogo alt="company logo" src={logo} onClick={() => props.setValue(0)}/>
             </LogoButton>
             {matches ? drawer : tabs()}
           </Toolbar>
