@@ -177,3 +177,8 @@ export const IconImage = styled('img')(({ theme }) => ({
   }
 }));
 
+export const LandingPageSVG = styled('div')`
+  height: 100%;
+  width: 100%;
+`
+
