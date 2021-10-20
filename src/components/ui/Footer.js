@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {FooterDiv, AdornmentImage, GridBox, GridMain, GridLink, GridItem, IconImage, GridSocial} from '../../utils/mui-styled-components';
+import {FooterDiv, AdornmentImage, GridBox, GridMain, GridLink, GridItem, IconImage, GridSocial} from '../../utils/mui-styled-components/footer';
 import {Hidden} from '@mui/material';
 
 import footerAdornment from "../../assets/Footer Adornment.svg";

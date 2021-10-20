@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import {Tabs, Tab, Button, Menu, MenuItem, SwipeableDrawer, IconButton, List, ListItem, ListItemText, AppBar, Grid} from '@mui/material';
+import {Tabs, Tab, Button, Menu, MenuItem, SwipeableDrawer, IconButton, List, ListItem, ListItemText, AppBar} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 export const AppBarContainer = styled(AppBar)(({theme}) => ({
@@ -50,16 +50,19 @@ export const TabContainer = styled(Tab)`
   margin-left: 25px;
 `;
 
-export const ButtonContainer = styled(Button)`
-  border-radius: 50px;
-  margin-left: 50px;
-  margin-right: 25px;
-  font-family: Pacifico;
-  font-size: 1rem;
-  text-transform: none;
-  height: 45px;
-  color: white;
-`;
+export const HeaderEstimateButton = styled(Button)(({theme}) => ({
+  borderRadius: "50px",
+  marginLeft: "50px",
+  marginRight: "25px",
+  fontFamily: "Pacifico",
+  fontSize: "1rem",
+  textTransform: "none",
+  height: "45px",
+  color: "white",
+  "&:hover": {
+    backgroundColor: theme.palette.secondary.light
+  }
+}));
 
 export const LogoButton = styled(Button)(({ theme }) => ({
   padding: 0,
@@ -121,64 +124,4 @@ export const ListItemTextSelected = styled(ListItemText)`
   opacity: 1;
 `;
 
-export const FooterDiv = styled('footer')(({theme}) => ({
-  backgroundColor: theme.palette.common.blue,
-  width: "100%",
-  zIndex: 1302,
-  position: "relative",
-}));
-
-export const AdornmentImage = styled('img')(({ theme }) => ({
-  width: "25em",
-  verticalAlign: "bottom",
-  [theme.breakpoints.down('md')]: {
-    width: "21em",
-  },
-  [theme.breakpoints.down('sm')]: {
-    width: "15em",
-  },
-}));
-
-export const GridMain = styled(Grid)`
-  position: absolute;
-`;
-
-export const GridLink = styled(Grid)`
-  color: white;
-  font-family: Arial;
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-decoration: none;
-`;
-
-export const GridItem = styled(Grid)`
-  margin: 3em;
-`;
-
-export const GridSocial = styled(Grid)(({theme}) => ({
-  position: "absolute",
-  marginTop: "-6em",
-  right: "1.5em",
-  [theme.breakpoints.down("sm")]: {
-    right: "0.6em"
-  }
-}))
-
-export const GridBox = styled(Grid)`
-
-`;
-
-export const IconImage = styled('img')(({ theme }) => ({
-  height: "4em",
-  width: "4em",
-  [theme.breakpoints.down("sm")]: {
-    height: "2.5em",
-    width: "2.5em",
-  }
-}));
-
-export const LandingPageSVG = styled('div')`
-  height: 100%;
-  width: 100%;
-`
 

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Toolbar } from '@mui/material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { CompanyLogo } from '../../utils/emotion-styled-components';
-import {TabsContainer, TabContainer, ButtonContainer, LogoButton, MenuContainer, MenuItemContainer, MarginDiv, DrawerContainer, IconContainer, MenuIconContainer, ListContainer, ListItemContainer, ListItemTextContainer, ListItemTextSelected, AppBarContainer} from '../../utils/mui-styled-components';
+import {TabsContainer, TabContainer, HeaderEstimateButton, LogoButton, MenuContainer, MenuItemContainer, MarginDiv, DrawerContainer, IconContainer, MenuIconContainer, ListContainer, ListItemContainer, ListItemTextContainer, ListItemTextSelected, AppBarContainer} from '../../utils/mui-styled-components/header';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -91,7 +91,7 @@ export default function Header(props){
           <TabContainer key={`${route}${index}`} component={Link} to={route.link} label={route.name} aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}/>
         ))}
       </TabsContainer>
-      <ButtonContainer variant="contained" color="secondary" component={Link} to={"/estimate"}>Free Estimate</ButtonContainer>
+      <HeaderEstimateButton variant="contained" color="secondary" component={Link} to={"/estimate"}>Free Estimate</HeaderEstimateButton>
       <MenuContainer
         id="simple-menu"
         anchorEl={anchorEl}
