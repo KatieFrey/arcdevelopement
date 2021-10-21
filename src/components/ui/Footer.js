@@ -22,7 +22,7 @@ export default function Footer({value, selectedIndex, setValue, setSelectedIndex
             <GridBox container direction="column" spacing={2}>
               <GridLink item component={Link} to="/services" onClick={() => {setValue(1); setSelectedIndex(0)}}>Services</GridLink>
               <GridLink item component={Link} to="/customsoftware" onClick={() => {setValue(1); setSelectedIndex(1)}}>Custom Software Development</GridLink>
-              <GridLink item component={Link} to="/mobileapps" onClick={() => {setValue(1); setSelectedIndex(2)}}>Mobile App Development</GridLink>
+              <GridLink item component={Link} to="/mobileapps" onClick={() => {setValue(1); setSelectedIndex(2)}}>iOS/Android App Development</GridLink>
               <GridLink item component={Link} to="/websites" onClick={() => {setValue(1); setSelectedIndex(3)}}>Website Development</GridLink>
             </GridBox>
           </GridItem>

@@ -10,6 +10,8 @@ import { useMediaQuery } from '@mui/material';
 
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+import mobileAppsIcon from '../assets/mobileIcon.svg';
+import websitesIcon from '../assets/websiteIcon.svg';
 
 export default function LandingPage() {
   const theme = useTheme();
@@ -63,7 +65,7 @@ export default function LandingPage() {
           </GridSVG>
         </GridBox>
       </GridBox>
-      <GridBox item /*---Services Block---*/>
+      <GridBox item /*---Custom Software Block---*/>
         <ServiceGrid container direction="row" justifyContent={matchesSM ? "center" : undefined}>
           <GridBox item style={{marginLeft: matchesSM ? 0 : "5em", textAlign: matchesSM ? "center" : undefined}}>
             <Typography variant="h4">Custom Software Development</Typography>
@@ -76,6 +78,38 @@ export default function LandingPage() {
           </GridBox>
           <GridBox item>
             <IconImage alt="custom software icon" src={customSoftwareIcon} />
+          </GridBox>
+        </ServiceGrid>
+      </GridBox>
+      <GridBox item /*---iOS/Android Block---*/>
+        <ServiceGrid container direction="row" justifyContent={matchesSM ? "center" : "flex-end"}>
+          <GridBox item style={{ textAlign: matchesSM ? "center" : undefined}}>
+            <Typography variant="h4">iOS/Android App Development</Typography>
+            <Typography variant="subtitle1" style={{marginBottom: "1em"}}>Extend Functionality. Extend Access. Increase Engagement.</Typography>
+            <Typography variant="subtitle1">Integrate your web experience or create a standalone app {matchesSM ? null : <br />} with either mobile platform.</Typography>
+            <LearnButton variant="outlined">
+              <span style={{ marginRight: 10}}>Learn More</span>
+              <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
+            </LearnButton>
+          </GridBox>
+          <GridBox item style={{marginRight: matchesSM ? 0 : "5em"}}>
+            <IconImage alt="mobile phone icon" src={mobileAppsIcon} />
+          </GridBox>
+        </ServiceGrid>
+      </GridBox>
+      <GridBox item /*---Websites Block---*/>
+        <ServiceGrid container direction="row" justifyContent={matchesSM ? "center" : undefined}>
+          <GridBox item style={{ marginLeft: matchesSM ? 0 : "5em",textAlign: matchesSM ? "center" : undefined}}>
+            <Typography variant="h4">Website Development</Typography>
+            <Typography variant="subtitle1" style={{marginBottom: "1em"}}>Reach More. Discover More. Sell More.</Typography>
+            <Typography variant="subtitle1">Optimized for Search Engines, built for speed.</Typography>
+            <LearnButton variant="outlined">
+              <span style={{ marginRight: 10}}>Learn More</span>
+              <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
+            </LearnButton>
+          </GridBox>
+          <GridBox item style={{marginRight: matchesSM ? 0 : "5em"}}>
+            <IconImage alt="website icon" src={websitesIcon} />
           </GridBox>
         </ServiceGrid>
       </GridBox>
