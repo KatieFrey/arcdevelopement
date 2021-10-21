@@ -50,15 +50,38 @@ export const EstimateButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-export const LearnButton = styled(Button)(({ theme }) => ({
-  borderColor: theme.palette.common.blue,
-  color: theme.palette.common.blue,
-  borderWidth: 2,
-  textTransform: "none",
-  borderRadius: 50,
-  fontFamily: "Roboto",
-  fontWeight: "bold",
+export const LearnButtonHero = styled(Button)(({ theme }) => ({
+  ...theme.typography.learnButton,
   fontSize: "0.9rem",
   height: 45,
   width: 145
 }));
+
+export const SpecialText = styled('span')(({theme}) => ({
+  fontFamily: "Pacifico",
+  color: theme.palette.common.orange
+}))
+
+export const LearnButton = styled(Button)(({ theme }) => ({
+  ...theme.typography.learnButton,
+  fontSize: "0.7rem",
+  height: 35,
+  padding: 5,
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "2em"
+  }
+}));
+
+export const IconImage = styled('img')(({theme}) => ({
+  marginLeft: "2em",
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: 0
+  }
+}))
+
+export const ServiceGrid = styled(Grid)(({theme}) => ({
+  marginTop: "12em",
+  [theme.breakpoints.down("sm")]: {
+    padding: 25
+  }
+}))
