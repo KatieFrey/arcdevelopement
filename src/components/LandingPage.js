@@ -2,8 +2,8 @@ import {useEffect} from 'react';
 //import Lottie from 'react-lottie';
 import { useTheme } from '@mui/material';
 import lottie from "lottie-web";
-import {LandingPageSVG, GridBox, GridSVG, EstimateButton, LearnButtonHero, TypographyGrid, SpecialText, LearnButton, IconImage, GridBoxMain, ServiceGrid} from '../utils/mui-styled-components/landingpage';
-import { Typography } from '@mui/material';
+import {LandingPageSVG, GridBox, GridSVG, EstimateButton, LearnButtonHero, TypographyGrid, SpecialText, LearnButton, IconImage, GridBoxMain, ServiceGrid, RevolutionBackground, RevolutionCard} from '../utils/mui-styled-components/landingpage';
+import { Typography, Card, CardContent } from '@mui/material';
 import ButtonArrow from './ui/ButtonArrow';
 
 import { useMediaQuery } from '@mui/material';
@@ -12,6 +12,7 @@ import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
+//import revolutionBackground from '../assets/repeatingBackground.svg';
 
 export default function LandingPage() {
   const theme = useTheme();
@@ -23,7 +24,7 @@ export default function LandingPage() {
       animationData: animationData,
       renderer: "svg", // "canvas", "html"
       loop: true, // boolean
-      autoplay: true, // boolean
+      autoplay: false, // boolean
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice'
       }
@@ -112,6 +113,31 @@ export default function LandingPage() {
             <IconImage alt="website icon" src={websitesIcon} />
           </GridBox>
         </ServiceGrid>
+      </GridBox>
+      <GridBox item /*---The Revolution---*/>
+        <GridBox container style={{height: "100em", marginTop: "12em"}} alignItems="center" justifyContent="center">
+          <RevolutionCard>
+            <CardContent>
+              <GridBox container direction="column" style={{textAlign: "center"}}>
+                <GridBox item>
+                  <Typography variant="h3" gutterBottom>
+                    The Revolution
+                  </Typography>
+                </GridBox>
+                <GridBox item>
+                  <Typography variant="subtitle1">
+                    Visionary insights coupled with cutting-edge technology is a recipe for revolution.
+                  </Typography>
+                  <LearnButtonHero variant="outlined">
+                    <span style={{ marginRight: 10}}>Learn More</span>
+                    <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
+                  </LearnButtonHero>
+                </GridBox>
+              </GridBox>
+            </CardContent>
+          </RevolutionCard>
+          <RevolutionBackground />
+        </GridBox>
       </GridBox>
     </GridBoxMain>
   )

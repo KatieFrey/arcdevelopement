@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Card } from '@mui/material';
+import revolutionBackground from '../../assets/repeatingBackground.svg'
 
 export const GridBox = styled(Grid)`
 
@@ -83,5 +84,28 @@ export const ServiceGrid = styled(Grid)(({theme}) => ({
   marginTop: "12em",
   [theme.breakpoints.down("sm")]: {
     padding: 25
+  }
+}))
+
+export const RevolutionBackground = styled('div')(({theme}) => ({
+  backgroundImage: `url(${revolutionBackground})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  height: "100%",
+  width: "100%"
+}));
+
+export const RevolutionCard = styled(Card)(({theme}) => ({
+  position: "absolute",
+  boxShadow: theme.shadows[10], borderRadius: 15,
+  padding: "10em",
+  [theme.breakpoints.down("sm")]: {
+    paddingTop: "8em",
+    paddingBottom: "8em",
+    paddingLeft: 0,
+    paddingRight: 0,
+    borderRadius: 9,
+    width: "100%"
   }
 }))
