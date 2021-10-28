@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Grid, Button, Card } from '@mui/material';
-import revolutionBackground from '../../assets/repeatingBackground.svg'
+import revolutionBackground from '../../assets/repeatingBackground.svg';
+import infoBackground from '../../assets/infoBackground.svg';
 
 export const GridBox = styled(Grid)`
 
@@ -108,4 +109,25 @@ export const RevolutionCard = styled(Card)(({theme}) => ({
     borderRadius: 9,
     width: "100%"
   }
-}))
+}));
+
+export const InfoBackground = styled('div')(({theme}) => ({
+  backgroundImage: `url(${infoBackground})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  height: "100%",
+  width: "100%"
+}));
+
+export const InfoButton = styled(Button)(({ theme }) => ({
+  ...theme.typography.learnButton,
+  fontSize: "0.7rem",
+  height: 35,
+  padding: 5,
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "2em"
+  },
+  color: "white",
+  borderColor: "white"
+}));

@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 //import Lottie from 'react-lottie';
 import { useTheme } from '@mui/material';
 import lottie from "lottie-web";
-import {LandingPageSVG, GridBox, GridSVG, EstimateButton, LearnButtonHero, TypographyGrid, SpecialText, LearnButton, IconImage, GridBoxMain, ServiceGrid, RevolutionBackground, RevolutionCard} from '../utils/mui-styled-components/landingpage';
+import {LandingPageSVG, GridBox, GridSVG, EstimateButton, LearnButtonHero, TypographyGrid, SpecialText, LearnButton, IconImage, GridBoxMain, ServiceGrid, RevolutionBackground, RevolutionCard, InfoBackground, InfoButton} from '../utils/mui-styled-components/landingpage';
 import { Typography, Card, CardContent } from '@mui/material';
 import ButtonArrow from './ui/ButtonArrow';
 
@@ -17,6 +17,7 @@ import websitesIcon from '../assets/websiteIcon.svg';
 export default function LandingPage() {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
     lottie.loadAnimation({
@@ -137,6 +138,37 @@ export default function LandingPage() {
             </CardContent>
           </RevolutionCard>
           <RevolutionBackground />
+        </GridBox>
+      </GridBox>
+      <GridBox item /*---Information Block---*/>
+        <GridBox container style={{height: "80em"}} alignItems="center" direction="row">
+          <GridBox item container style={{ position: "absolute", textAlign: matchesXS ? "center" : "inherit"}} direction={matchesSM ? "column" : "row"} spacing={matchesXS ? 10 : 0}>
+            <GridBox item sm style={{ marginLeft: matchesXS ? 0 : matchesSM ? "2em" : "5em"}}>
+              <GridBox container direction="column">
+                <Typography variant="h2" style={{color: "white"}}>About Us</Typography>
+                <Typography variant="subtitle2">Let's get personal.</Typography>
+                <GridBox item>
+                  <InfoButton variant="outlined">
+                    <span style={{ marginRight: 10}}>Learn More</span>
+                    <ButtonArrow width={15} height={15} fill="white" />
+                  </InfoButton>
+                </GridBox>
+              </GridBox>
+            </GridBox>
+            <GridBox item sm style={{ marginRight: matchesXS ? 0 : matchesSM ? "2em" : "5em", textAlign: matchesXS ? "center" : "right"}}>
+              <GridBox container direction="column">
+                <Typography variant="h2" style={{color: "white"}}>Contact Us</Typography>
+                <Typography variant="subtitle2">Say hello! <span role="img" aria-label="waving hand">👋🏻</span></Typography>
+                <GridBox item>
+                  <InfoButton variant="outlined">
+                    <span style={{ marginRight: 10}}>Learn More</span>
+                    <ButtonArrow width={15} height={15} fill="white" />
+                  </InfoButton>
+                </GridBox>
+              </GridBox>
+            </GridBox>
+          </GridBox>
+          <InfoBackground />
         </GridBox>
       </GridBox>
     </GridBoxMain>
