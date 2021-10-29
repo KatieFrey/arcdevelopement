@@ -6,6 +6,8 @@ import {LandingPageSVG, GridBox, GridSVG, EstimateButton, LearnButtonHero, Typog
 import { Typography, Card, CardContent } from '@mui/material';
 import ButtonArrow from './ui/ButtonArrow';
 
+import CallToAction from './ui/CallToAction';
+
 import { useMediaQuery } from '@mui/material';
 
 import animationData from '../animations/landinganimation/data';
@@ -170,6 +172,9 @@ export default function LandingPage() {
           </GridBox>
           <InfoBackground />
         </GridBox>
+      </GridBox>
+      <GridBox item /*---Call to Action Block---*/>
+        <CallToAction />
       </GridBox>
     </GridBoxMain>
   )
