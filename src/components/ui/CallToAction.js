@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GridBox, LearnButton, EstimateButton, CallToActionGrid } from '../../utils/mui-styled-components/calltoaction';
 import { Typography } from '@mui/material';
 import { useTheme } from '@mui/material';
 import ButtonArrow from './ButtonArrow';
 import { useMediaQuery } from '@mui/material';
 
-export default function CallToAction() {
+export default function CallToAction(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
   return(
@@ -20,7 +21,7 @@ export default function CallToAction() {
               Take advantage of the 21st Century.
             </Typography>
               <GridBox container item justifyContent={matchesSM ? "center" : undefined}>
-                <LearnButton variant="outlined">
+                <LearnButton component={Link} to="/revolution" variant="outlined" onClick={() => props.setValue(2)}>
                   <span style={{ marginRight: "5em"}}>Learn More</span>
                   <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
                 </LearnButton>
@@ -29,7 +30,7 @@ export default function CallToAction() {
         </GridBox>
       </GridBox>
       <GridBox item >
-        <EstimateButton variant="contained">Free Estimate</EstimateButton>
+        <EstimateButton component={Link} to="/estimate" variant="contained" onClick={() => props.setValue(5)}>Free Estimate</EstimateButton>
       </GridBox>
     </CallToActionGrid>
   )

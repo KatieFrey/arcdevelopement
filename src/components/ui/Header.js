@@ -39,10 +39,6 @@ export default function Header(props){
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
 
-
-  console.log("Value: ", props.value)
-  //console.log("Matches: ", matches)
-
   const handleChange = (event, newValue) => {
     props.setValue(newValue);
   };
@@ -78,6 +74,9 @@ export default function Header(props){
             }
           }
           break;
+        case "/estimate":
+          props.setValue(5);
+          break;
           default:
           break;
       }
@@ -91,7 +90,7 @@ export default function Header(props){
           <TabContainer key={`${route}${index}`} component={Link} to={route.link} label={route.name} aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}/>
         ))}
       </TabsContainer>
-      <HeaderEstimateButton variant="contained" color="secondary" component={Link} to={"/estimate"}>Free Estimate</HeaderEstimateButton>
+      <HeaderEstimateButton variant="contained" color="secondary" component={Link} to={"/estimate"} onClick={() => props.setValue(5)}>Free Estimate</HeaderEstimateButton>
       <MenuContainer
         id="simple-menu"
         anchorEl={anchorEl}

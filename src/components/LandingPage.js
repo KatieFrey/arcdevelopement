@@ -1,10 +1,12 @@
 import {useEffect} from 'react';
 //import Lottie from 'react-lottie';
+import {Link} from 'react-router-dom'
 import { useTheme } from '@mui/material';
 import lottie from "lottie-web";
-import {LandingPageSVG, GridBox, GridSVG, EstimateButton, LearnButtonHero, TypographyGrid, SpecialText, LearnButton, IconImage, GridBoxMain, ServiceGrid, RevolutionBackground, RevolutionCard, InfoBackground, InfoButton} from '../utils/mui-styled-components/landingpage';
+import {LandingPageSVG, GridBox, GridSVG, EstimateButton, LearnButtonHero, TypographyGrid, SpecialText, LearnButton, IconImage, GridBoxMain, ServiceGrid, RevolutionBackground, RevolutionCard, InfoBackground, InfoButton, InfoGrid} from '../utils/mui-styled-components/landingpage';
 import { Typography, Card, CardContent } from '@mui/material';
 import ButtonArrow from './ui/ButtonArrow';
+
 
 import CallToAction from './ui/CallToAction';
 
@@ -16,7 +18,7 @@ import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
 //import revolutionBackground from '../assets/repeatingBackground.svg';
 
-export default function LandingPage() {
+export default function LandingPage(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -34,16 +36,6 @@ export default function LandingPage() {
     });
   })
 
-
-  // const defaultOptions = {
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: animationData,
-  //   rendererSettings: {
-  //     preserveAspectRatio: 'xMidYMid slice'
-  //   }
-  // }
-  //<Lottie options={defaultOptions} height={"100%"} width={"100%"} />
   return (
     <GridBoxMain container direction="column" style={{marginTop: "5em"}}>
       <GridBox item /*---Hero Block---*/ >
@@ -54,10 +46,10 @@ export default function LandingPage() {
             </Typography>
             <GridBox container justifyContent="center" style={{marginTop: "1em"}}>
               <GridBox item>
-                <EstimateButton variant="contained">Free Estimate</EstimateButton>
+                <EstimateButton component={Link} to="/estimate" variant="contained" onClick={() => props.setValue(5)}>Free Estimate</EstimateButton>
               </GridBox>
               <GridBox item>
-                <LearnButtonHero variant="outlined">
+                <LearnButtonHero component={Link} to="/revolution" variant="outlined" onClick={() => props.setValue(2)}>
                   <span style={{ marginRight: 10}}>Learn More</span>
                   <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
                 </LearnButtonHero>
@@ -75,7 +67,7 @@ export default function LandingPage() {
             <Typography variant="h4">Custom Software Development</Typography>
             <Typography variant="subtitle1" style={{marginBottom: "1em"}}>Save Energy. Save Time. Save Money.</Typography>
             <Typography variant="subtitle1">Complete digital solutions, from investigation to <SpecialText>celebration</SpecialText></Typography>
-            <LearnButton variant="outlined">
+            <LearnButton component={Link} to="/customsoftware" variant="outlined" onClick={() => {props.setValue(1); props.setSelectedIndex(1)}}>
               <span style={{ marginRight: 10}}>Learn More</span>
               <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
             </LearnButton>
@@ -91,7 +83,7 @@ export default function LandingPage() {
             <Typography variant="h4">iOS/Android App Development</Typography>
             <Typography variant="subtitle1" style={{marginBottom: "1em"}}>Extend Functionality. Extend Access. Increase Engagement.</Typography>
             <Typography variant="subtitle1">Integrate your web experience or create a standalone app {matchesSM ? null : <br />} with either mobile platform.</Typography>
-            <LearnButton variant="outlined">
+            <LearnButton component={Link} to="/mobileapps" variant="outlined" onClick={() => {props.setValue(1); props.setSelectedIndex(2)}}>
               <span style={{ marginRight: 10}}>Learn More</span>
               <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
             </LearnButton>
@@ -107,7 +99,7 @@ export default function LandingPage() {
             <Typography variant="h4">Website Development</Typography>
             <Typography variant="subtitle1" style={{marginBottom: "1em"}}>Reach More. Discover More. Sell More.</Typography>
             <Typography variant="subtitle1">Optimized for Search Engines, built for speed.</Typography>
-            <LearnButton variant="outlined">
+            <LearnButton component={Link} to="/websites" variant="outlined" onClick={() => {props.setValue(1); props.setSelectedIndex(3)}}>
               <span style={{ marginRight: 10}}>Learn More</span>
               <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
             </LearnButton>
@@ -131,7 +123,7 @@ export default function LandingPage() {
                   <Typography variant="subtitle1">
                     Visionary insights coupled with cutting-edge technology is a recipe for revolution.
                   </Typography>
-                  <LearnButtonHero variant="outlined">
+                  <LearnButtonHero component={Link} to="/revolution" variant="outlined" onClick={() => props.setValue(2)}>
                     <span style={{ marginRight: 10}}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
                   </LearnButtonHero>
@@ -143,14 +135,14 @@ export default function LandingPage() {
         </GridBox>
       </GridBox>
       <GridBox item /*---Information Block---*/>
-        <GridBox container style={{height: "80em"}} alignItems="center" direction="row">
-          <GridBox item container style={{ position: "absolute", textAlign: matchesXS ? "center" : "inherit"}} direction={matchesSM ? "column" : "row"} spacing={matchesXS ? 10 : 0}>
+        <InfoGrid container alignItems="center" direction="row">
+          <GridBox item container style={{ textAlign: matchesXS ? "center" : "inherit"}} direction={matchesSM ? "column" : "row"}>
             <GridBox item sm style={{ marginLeft: matchesXS ? 0 : matchesSM ? "2em" : "5em"}}>
               <GridBox container direction="column">
                 <Typography variant="h2" style={{color: "white"}}>About Us</Typography>
                 <Typography variant="subtitle2">Let's get personal.</Typography>
                 <GridBox item>
-                  <InfoButton variant="outlined">
+                  <InfoButton component={Link} to="/about" variant="outlined" onClick={() => props.setValue(3)}>
                     <span style={{ marginRight: 10}}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill="white" />
                   </InfoButton>
@@ -158,11 +150,11 @@ export default function LandingPage() {
               </GridBox>
             </GridBox>
             <GridBox item sm style={{ marginRight: matchesXS ? 0 : matchesSM ? "2em" : "5em", textAlign: matchesXS ? "center" : "right"}}>
-              <GridBox container direction="column">
+              <GridBox container style={{marginBottom: matchesXS ? "10em" : 0}} direction="column">
                 <Typography variant="h2" style={{color: "white"}}>Contact Us</Typography>
                 <Typography variant="subtitle2">Say hello! <span role="img" aria-label="waving hand">👋🏻</span></Typography>
                 <GridBox item>
-                  <InfoButton variant="outlined">
+                  <InfoButton component={Link} to="/contact" variant="outlined" onClick={() => props.setValue(4)}>
                     <span style={{ marginRight: 10}}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill="white" />
                   </InfoButton>
@@ -170,11 +162,11 @@ export default function LandingPage() {
               </GridBox>
             </GridBox>
           </GridBox>
-          <InfoBackground />
-        </GridBox>
+
+        </InfoGrid>
       </GridBox>
       <GridBox item /*---Call to Action Block---*/>
-        <CallToAction />
+        <CallToAction setValue={props.setValue}/>
       </GridBox>
     </GridBoxMain>
   )

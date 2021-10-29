@@ -131,3 +131,12 @@ export const InfoButton = styled(Button)(({ theme }) => ({
   color: "white",
   borderColor: "white"
 }));
+
+export const InfoGrid = styled(Grid)(({theme}) => ({
+  backgroundImage: `url(${infoBackground})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  height: "80em",
+  width: "100%"
+}));
