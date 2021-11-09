@@ -3,7 +3,7 @@ import CallToAction from './ui/CallToAction'
 import {Link} from 'react-router-dom'
 import { useTheme } from '@mui/material';
 import lottie from "lottie-web";
-import {GridBox, IconContainer, IconImage, HeaderGrid, IconGrid, MainGrid, SaveEnergyTimeMoneyGrid, ItemGrid, CustomSoftwareSVG, RootsImage, RowGrid} from "../utils/mui-styled-components/customsoftware";
+import {GridBox, ArrowContainer, IconImage, HeaderGrid, IconGrid, SaveEnergyTimeMoneyGrid, ItemGrid, CustomSoftwareSVG, RootsImage, RowGrid} from "../utils/mui-styled-components/customsoftware";
 import {Typography, Hidden} from "@mui/material";
 import {useMediaQuery} from "@mui/material"
 
@@ -83,9 +83,9 @@ export default function CustomSoftware(props) {
       <RowGrid item container direction="row" justifyContent={matchesMD ? "center" : undefined} style={{marginTop: matchesXS ? "1em" : "2em"}}>
         <Hidden mdDown>
           <IconGrid item style={{marginRight: "1em", marginLeft: "-3.5em"}}>
-            <IconContainer component={Link} to="/services" onClick={() => props.setSelectedIndex(0)}>
+            <ArrowContainer component={Link} to="/services" onClick={() => props.setSelectedIndex(0)}>
               <IconImage src={backArrow} alt="Back to Services Page"/>
-            </IconContainer>
+            </ArrowContainer>
           </IconGrid>
         </Hidden>
         <HeaderGrid item container direction="column">
@@ -101,9 +101,9 @@ export default function CustomSoftware(props) {
         </HeaderGrid>
         <Hidden mdDown>
         <IconGrid item>
-          <IconContainer component={Link} to="/mobileapps" onClick={() => props.setSelectedIndex(2)}>
+          <ArrowContainer component={Link} to="/mobileapps" onClick={() => props.setSelectedIndex(2)}>
             <IconImage src={forwardArrow} alt="Forward to iOS/Android App Development Page"/>
-          </IconContainer>
+          </ArrowContainer>
         </IconGrid>
         </Hidden>
       </RowGrid>
