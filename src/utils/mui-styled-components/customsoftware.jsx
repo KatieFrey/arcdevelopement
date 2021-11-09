@@ -4,12 +4,25 @@ import { Grid, IconButton } from '@mui/material';
 export const GridBox = styled(Grid)`
 
 `;
+export const RowGrid = styled(Grid)(({theme}) => ({
+  paddingLeft: "5em",
+  paddingRight: "5em",
+  [theme.breakpoints.down("sm")]: {
+    paddingLeft: '1.5em',
+    paddingRight: '1.5em'
+  }
+}))
 
 export const MainGrid = styled(Grid)(({theme}) => ({
   paddingLeft: "5em",
   paddingRight: "5em",
   paddingTop: "2em",
-  paddingBottom: "10em"
+  paddingBottom: "10em",
+  [theme.breakpoints.down("sm")]: {
+    paddingLeft: '1.5em',
+    paddingRight: '1.5em',
+    paddingTop: "1em"
+  }
 }))
 
 export const HeaderGrid = styled(Grid)(({theme}) => ({
@@ -17,6 +30,10 @@ export const HeaderGrid = styled(Grid)(({theme}) => ({
 }))
 
 export const SaveEnergyTimeMoneyGrid = styled(Grid)(({theme}) => ({
+  maxWidth: "40em"
+}))
+
+export const ItemGrid = styled(Grid)(({theme}) => ({
   maxWidth: "40em"
 }))
 
@@ -31,9 +48,24 @@ export const IconContainer = styled(IconButton)`
   }
 `;
 
+export const CustomSoftwareSVG = styled('div')`
+
+`
+
 export const IconImage = styled('img')(({theme}) => ({
   marginLeft: "2em",
   [theme.breakpoints.down("sm")]: {
     marginLeft: 0
   }
 }))
+
+export const RootsImage = styled('img')(({theme}) => ({
+  height: "45em",
+  width: "45em",
+  //marginTop: "5em",
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: 0
+  }
+}))
+
+
