@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import {useTheme} from '@mui/material';
-import lottie from "lottie-web";
-import {GridBox, RowGrid, ArrowContainer, IconGrid, IconImage, HeaderGrid, CustomSoftwareSVG} from "../utils/mui-styled-components/mobileapps";
+
+import {GridBox, RowGrid, ArrowContainer, IconGrid, IconImage, HeaderGrid} from "../utils/mui-styled-components/mobileapps";
 import {Typography, Hidden} from "@mui/material";
 import {useMediaQuery} from "@mui/material";
 
@@ -23,18 +23,6 @@ export default function Websites(props) {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
-  // useEffect(() => {
-  //   lottie.loadAnimation({
-  //     container: document.querySelector("#integrationAnimation"),
-  //     animationData: integrationAnimation,
-  //     renderer: "svg", // "canvas", "html"
-  //     loop: true, // boolean
-  //     autoplay: false, // boolean
-  //     rendererSettings: {
-  //       preserveAspectRatio: 'xMidYMid slice'
-  //     }
-  //   });
-  // }, [])
 
   return (
     <GridBox container direction="column">
