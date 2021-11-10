@@ -5,9 +5,11 @@ import LandingPage from "./LandingPage";
 import Services from "./Services";
 import CustomSoftware from "./CustomSoftware";
 import MobileApps from "./MobileApps";
+import Websites from "./Websites";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./ui/Theme"
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
 
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -21,7 +23,7 @@ function App() {
           <Route exact path="/services" render={(props) => <Services {...props} setValue={setValue} setSelectedIndex={setSelectedIndex}/>}/>
           <Route exact path="/customsoftware" render={(props) => <CustomSoftware {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} />}/>
           <Route exact path="/mobileapps" render={(props) => <MobileApps {...props} setValue={setValue} setSelectedIndex={setSelectedIndex}/>}/>
-          <Route exact path="/websites" component={() => <div>Websites</div>}/>
+          <Route exact path="/websites" render={(props) => <Websites {...props} setValue={setValue} setSelectedIndex={setSelectedIndex}/>} />
           <Route exact path="/revolution" component={() => <div>Revolution</div>}/>
           <Route exact path="/about" component={() => <div>About Us</div>}/>
           <Route exact path="/contact" component={() => <div>Contact Us</div>}/>
