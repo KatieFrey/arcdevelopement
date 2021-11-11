@@ -1,8 +1,19 @@
 import { styled } from '@mui/material/styles';
-import { Grid, Button, Card } from '@mui/material';
-import revolutionBackground from '../../assets/repeatingBackground.svg';
-import infoBackground from '../../assets/infoBackground.svg';
+import { Grid } from '@mui/material';
 
 export const GridBox = styled(Grid)`
 
 `;
+
+export const RowGrid = styled(Grid)(({theme}) => ({
+  paddingLeft: "5em",
+  paddingRight: "5em",
+  [theme.breakpoints.down("sm")]: {
+    paddingLeft: '1.5em',
+    paddingRight: '1.5em'
+  }
+}));
+
+export const CustomSoftwareSVG = styled('div')`
+
+`

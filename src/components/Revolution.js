@@ -1,9 +1,8 @@
-import {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom'
+import {useEffect} from 'react';
 import {useTheme} from '@mui/material';
 import lottie from "lottie-web";
-import {GridBox, RowGrid, ArrowContainer, IconGrid, IconImage, HeaderGrid, CustomSoftwareSVG} from "../utils/mui-styled-components/mobileapps";
-import {Typography, Hidden} from "@mui/material";
+import {GridBox, RowGrid, CustomSoftwareSVG} from "../utils/mui-styled-components/revolution";
+import {Typography} from "@mui/material";
 import {useMediaQuery} from "@mui/material";
 
 import vision from '../assets/vision.svg';
@@ -17,8 +16,6 @@ import maintain from '../assets/maintainIcon.svg';
 import iterate from '../assets/iterateIcon.svg';
 
 import technologyAnimation from "../animations/technologyAnimation/data.json";
-
-import CallToAction from './ui/CallToAction';
 
 
 export default function Revolution(props){
@@ -39,7 +36,6 @@ export default function Revolution(props){
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   return(
     <GridBox container direction="column">
